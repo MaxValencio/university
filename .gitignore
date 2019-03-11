@@ -1,0 +1,8 @@
+$ cat .gitignore
+*.[oa]
+*~
+.ignore/
+.settings/
+target/
+.project
+.classpath
