@@ -1,77 +1,83 @@
 package net.maxvalencio.university_schedule.domain;
 
-import java.io.Serializable;
+public class Person {
 
-public class Person implements Serializable {
+    private Long id;
+    private String name;
+    private String emailAddress;
 
-	private String name;
-	private String emailAddress;
+    public Person() {
+    }
 
-	public Person() {
-	}
+    public Person(String name, String emailAddress) {
+        this.name = name;
+        this.emailAddress = emailAddress;
+    }
 
-	public Person(String name, String emailAddress) {
-		this.name = name;
-		this.emailAddress = emailAddress;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getEmailAddress() {
-		return emailAddress;
-	}
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Person other = (Person) obj;
-		if (emailAddress == null) {
-			if (other.emailAddress != null) {
-				return false;
-			}
-		} else if (!emailAddress.equals(other.emailAddress)) {
-			return false;
-		}
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
 
-	@Override
-	public String toString() {
-		return "Person : " + name + ", emailAddress = " + emailAddress;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        return true;
+    }
 
+    @Override
+    public String toString() {
+        return "Person [id=" + id + ", name=" + name + "]";
+    }
 }
