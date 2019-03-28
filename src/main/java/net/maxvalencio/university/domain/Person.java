@@ -6,12 +6,6 @@ public abstract class Person {
     private String name;
     private String emailAddress;
 
-    public Person(Long id, String name, String emailAddress) {
-        this.id = id;
-        this.name = name;
-        this.emailAddress = emailAddress;
-    }
-
     public Long getId() {
         return id;
     }

@@ -8,12 +8,12 @@ public class Teacher extends Person {
     private String qualification;
     private List<Discipline> disciplines = new ArrayList<>();
 
-    public Teacher(Long id, String name, String emailAddress) {
-        super(id, name, emailAddress);
+    public Teacher(String name) {
+        this.setName(name);;
     }
 
-    public Teacher(Long id, String name, String emailAddress, String qualification) {
-        super(id, name, emailAddress);
+    public Teacher(String name, String qualification) {
+        this.setName(name);
         this.qualification = qualification;
     }
 

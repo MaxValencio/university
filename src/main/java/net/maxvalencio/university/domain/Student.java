@@ -4,12 +4,13 @@ public class Student extends Person {
 
     private String course;
 
-    public Student(Long id, String name, String emailAddress) {
-        super(id, name, emailAddress);
+    public Student(String name) {
+        this.setName(name);
     }
 
-    public Student(Long id, String name, String emailAddress, String course) {
-        super(id, name, emailAddress);
+    public Student(String name, String emailAddress, String course) {
+        this.setName(name);
+        this.setEmailAddress(emailAddress);
         this.course = course;
     }
 
