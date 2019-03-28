@@ -1,4 +1,4 @@
-package net.maxvalencio.university_schedule.domain;
+package net.maxvalencio.university.domain;
 
 public class Student extends Person {
 

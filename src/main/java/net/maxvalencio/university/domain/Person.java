@@ -1,15 +1,17 @@
-package net.maxvalencio.university_schedule.domain;
+package net.maxvalencio.university.domain;
 
-public class Discipline {
+public class Person {
 
     private Long id;
     private String name;
+    private String emailAddress;
 
-    public Discipline() {
+    public Person() {
     }
 
-    public Discipline(String name) {
+    public Person(String name, String emailAddress) {
         this.name = name;
+        this.emailAddress = emailAddress;
     }
 
     public Long getId() {
@@ -20,18 +22,27 @@ public class Discipline {
         this.id = id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -44,10 +55,17 @@ public class Discipline {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Person)) {
             return false;
         }
-        Discipline other = (Discipline) obj;
+        Person other = (Person) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
         if (name == null) {
             if (other.name != null) {
                 return false;
@@ -60,6 +78,6 @@ public class Discipline {
 
     @Override
     public String toString() {
-        return "Discipline [id=" + id + ", name=" + name + "]";
+        return "Person [id=" + id + ", name=" + name + "]";
     }
 }

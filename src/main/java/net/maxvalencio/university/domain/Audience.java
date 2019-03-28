@@ -1,4 +1,4 @@
-package net.maxvalencio.university_schedule.domain;
+package net.maxvalencio.university.domain;
 
 public class Audience {
 
@@ -32,6 +32,7 @@ public class Audience {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + number;
         return result;
     }
@@ -48,7 +49,11 @@ public class Audience {
             return false;
         }
         Audience other = (Audience) obj;
-        if (number != other.number) {
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
             return false;
         }
         return true;

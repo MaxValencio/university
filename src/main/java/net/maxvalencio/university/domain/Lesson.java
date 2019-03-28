@@ -1,4 +1,4 @@
-package net.maxvalencio.university_schedule.domain;
+package net.maxvalencio.university.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -129,13 +129,6 @@ public class Lesson {
                 return false;
             }
         } else if (!end.equals(other.end)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
             return false;
         }
         if (name == null) {
