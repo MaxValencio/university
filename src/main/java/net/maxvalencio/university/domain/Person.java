@@ -1,15 +1,13 @@
 package net.maxvalencio.university.domain;
 
-public class Person {
+public abstract class Person {
 
     private Long id;
     private String name;
     private String emailAddress;
 
-    public Person() {
-    }
-
-    public Person(String name, String emailAddress) {
+    public Person(Long id, String name, String emailAddress) {
+        this.id = id;
         this.name = name;
         this.emailAddress = emailAddress;
     }

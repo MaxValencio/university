@@ -4,17 +4,12 @@ public class Student extends Person {
 
     private String course;
 
-    public Student() {
-        super();
+    public Student(Long id, String name, String emailAddress) {
+        super(id, name, emailAddress);
     }
 
-    public Student(String course) {
-        super();
-        this.course = course;
-    }
-
-    public Student(String name, String emailAddress, String course) {
-        super(name, emailAddress);
+    public Student(Long id, String name, String emailAddress, String course) {
+        super(id, name, emailAddress);
         this.course = course;
     }
 
