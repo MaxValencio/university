@@ -52,7 +52,7 @@ public class Teacher extends Person {
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof Teacher)) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         Teacher other = (Teacher) obj;
@@ -75,6 +75,6 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher [id=" + getId() + ", name()=" + getName() + "]";
+        return "Teacher [id=" + getId() + ", name=" + getName() + "]";
     }
 }

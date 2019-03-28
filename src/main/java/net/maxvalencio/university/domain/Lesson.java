@@ -106,7 +106,7 @@ public class Lesson {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof Lesson)) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         Lesson other = (Lesson) obj;

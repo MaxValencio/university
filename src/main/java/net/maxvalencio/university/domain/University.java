@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-
-    private Long id;
+    
     private String name;
     private List<Faculty> faculties = new ArrayList<>();
     private List<Audience> audiences = new ArrayList<>();
@@ -13,14 +12,6 @@ public class University {
 
     public University(String name) {
         this.setName(name);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

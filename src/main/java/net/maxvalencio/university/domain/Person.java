@@ -47,7 +47,7 @@ public abstract class Person {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof Person)) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         Person other = (Person) obj;
