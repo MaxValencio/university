@@ -2,6 +2,7 @@ package net.maxvalencio.university.domain;
 
 public class Student extends Person {
 
+    private Long studentCardNumber;
     private String course;
 
     public Student(String name) {
@@ -12,6 +13,14 @@ public class Student extends Person {
         this.setName(name);
         this.setEmailAddress(emailAddress);
         this.course = course;
+    }
+
+    public Long getStudentCardNumber() {
+        return studentCardNumber;
+    }
+
+    public void setStudentCardNumber(Long studentCardNumber) {
+        this.studentCardNumber = studentCardNumber;
     }
 
     public String getCourse() {
@@ -26,7 +35,9 @@ public class Student extends Person {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((course == null) ? 0 : course.hashCode());
+        result = prime * result + ((studentCardNumber == null)
+                ? 0
+                : studentCardNumber.hashCode());
         return result;
     }
 
@@ -42,11 +53,11 @@ public class Student extends Person {
             return false;
         }
         Student other = (Student) obj;
-        if (course == null) {
-            if (other.course != null) {
+        if (studentCardNumber == null) {
+            if (other.studentCardNumber != null) {
                 return false;
             }
-        } else if (!course.equals(other.course)) {
+        } else if (!studentCardNumber.equals(other.studentCardNumber)) {
             return false;
         }
         return true;

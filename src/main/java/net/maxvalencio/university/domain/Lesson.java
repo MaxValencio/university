@@ -87,14 +87,10 @@ public class Lesson {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((audience == null) ? 0 : audience.hashCode());
-        result = prime * result
                 + ((discipline == null) ? 0 : discipline.hashCode());
         result = prime * result + ((end == null) ? 0 : end.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((groups == null) ? 0 : groups.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
-        result = prime * result + ((teacher == null) ? 0 : teacher.hashCode());
         return result;
     }
 
@@ -110,13 +106,6 @@ public class Lesson {
             return false;
         }
         Lesson other = (Lesson) obj;
-        if (audience == null) {
-            if (other.audience != null) {
-                return false;
-            }
-        } else if (!audience.equals(other.audience)) {
-            return false;
-        }
         if (discipline == null) {
             if (other.discipline != null) {
                 return false;
@@ -131,11 +120,11 @@ public class Lesson {
         } else if (!end.equals(other.end)) {
             return false;
         }
-        if (name == null) {
-            if (other.name != null) {
+        if (groups == null) {
+            if (other.groups != null) {
                 return false;
             }
-        } else if (!name.equals(other.name)) {
+        } else if (!groups.equals(other.groups)) {
             return false;
         }
         if (start == null) {
@@ -143,13 +132,6 @@ public class Lesson {
                 return false;
             }
         } else if (!start.equals(other.start)) {
-            return false;
-        }
-        if (teacher == null) {
-            if (other.teacher != null) {
-                return false;
-            }
-        } else if (!teacher.equals(other.teacher)) {
             return false;
         }
         return true;

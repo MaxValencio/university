@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Teacher extends Person {
 
+    private Long taxpayerID;
     private String qualification;
     private List<Discipline> disciplines = new ArrayList<>();
 
@@ -17,6 +18,14 @@ public class Teacher extends Person {
         this.qualification = qualification;
     }
 
+    public Long getTaxpayerID() {
+        return taxpayerID;
+    }
+
+    public void setTaxpayerID(Long taxpayerID) {
+        this.taxpayerID = taxpayerID;
+    }
+    
     public String getQualification() {
         return qualification;
     }
@@ -38,9 +47,7 @@ public class Teacher extends Person {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + ((disciplines == null) ? 0 : disciplines.hashCode());
-        result = prime * result
-                + ((qualification == null) ? 0 : qualification.hashCode());
+                + ((taxpayerID == null) ? 0 : taxpayerID.hashCode());
         return result;
     }
 
@@ -56,18 +63,11 @@ public class Teacher extends Person {
             return false;
         }
         Teacher other = (Teacher) obj;
-        if (disciplines == null) {
-            if (other.disciplines != null) {
+        if (taxpayerID == null) {
+            if (other.taxpayerID != null) {
                 return false;
             }
-        } else if (!disciplines.equals(other.disciplines)) {
-            return false;
-        }
-        if (qualification == null) {
-            if (other.qualification != null) {
-                return false;
-            }
-        } else if (!qualification.equals(other.qualification)) {
+        } else if (!taxpayerID.equals(other.taxpayerID)) {
             return false;
         }
         return true;

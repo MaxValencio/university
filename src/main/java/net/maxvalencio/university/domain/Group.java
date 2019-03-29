@@ -7,6 +7,8 @@ public class Group {
 
     private Long id;
     private String name;
+    private int admissionYear;
+
     private List<Student> students = new ArrayList<>();
 
     public Group() {
@@ -31,6 +33,14 @@ public class Group {
     public String getName() {
         return name;
     }
+    
+    public int getAdmissionYear() {
+        return admissionYear;
+    }
+
+    public void setAdmissionYear(int admissionYear) {
+        this.admissionYear = admissionYear;
+    }
 
     public void addStudent(Student student) {
         students.add(student);
@@ -44,7 +54,7 @@ public class Group {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + admissionYear;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -61,11 +71,7 @@ public class Group {
             return false;
         }
         Group other = (Group) obj;
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
+        if (admissionYear != other.admissionYear) {
             return false;
         }
         if (name == null) {
