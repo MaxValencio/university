@@ -75,7 +75,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher [id=" + getId() + ", name=" + getName() + "taxpayerID="
+        return "Teacher [" + super.t String() + "taxpayerID="
                 + taxpayerID + "]";
     }
 }
