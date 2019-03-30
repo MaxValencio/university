@@ -25,7 +25,7 @@ public class Teacher extends Person {
     public void setTaxpayerID(Long taxpayerID) {
         this.taxpayerID = taxpayerID;
     }
-    
+
     public String getQualification() {
         return qualification;
     }
@@ -75,6 +75,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher [id=" + getId() + ", name=" + getName() + "]";
+        return "Teacher [id=" + getId() + ", name=" + getName() + "taxpayerID="
+                + taxpayerID + "]";
     }
 }

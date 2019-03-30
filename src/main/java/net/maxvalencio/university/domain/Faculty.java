@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Faculty {
 
-    private Long id;
     private String name;
     private List<Teacher> teachers = new ArrayList<>();
     private List<Student> students = new ArrayList<>();
@@ -16,14 +15,6 @@ public class Faculty {
 
     public Faculty(String name) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -106,6 +97,6 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return "Faculty [id=" + id + ", name=" + name + "]";
+        return "Faculty [name=" + name + "]";
     }
 }
