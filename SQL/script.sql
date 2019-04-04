@@ -4,52 +4,52 @@ DROP SEQUENCE IF EXISTS sequence_group_id, sequence_audience_id, sequence_discip
 CREATE SEQUENCE sequence_group_id;
 
 CREATE TABLE groups (
-	group_id		BIGSERIAL  		PRIMARY KEY ,
-	name			VARCHAR(25)		NOT NULL,
-	admissionYear	INT 			NOT NULL
+	group_id            BIGSERIAL       PRIMARY KEY ,
+	name                VARCHAR(25)     NOT NULL,
+	admissionYear       INT             NOT NULL
 );
 
 CREATE TABLE students (
-	name					VARCHAR(35)		NOT NULL,
-	emailAddress 			VARCHAR(30) 	NOT NULL,
-	studentCardNumber_id	BIGINT			PRIMARY KEY,
-	course					VARCHAR(10)		NOT NULL,
-	group_id				BIGINT			REFERENCES groups,
+	name                    VARCHAR(35)     NOT NULL,
+	emailAddress            VARCHAR(30)     NOT NULL,
+	studentCardNumber_id    BIGINT          PRIMARY KEY,
+	course                  VARCHAR(10)     NOT NULL,
+	group_id                BIGINT          REFERENCES groups,
 	CONSTRAINT student_pk CHECK (studentCardNumber_id > 0)
 );
 
 CREATE TABLE teachers (
-	name			VARCHAR(35)		NOT NULL,
-	emailAddress 	VARCHAR(30) 	NOT NULL,
-	taxpayerID		BIGINT			PRIMARY KEY,
-	qualification	VARCHAR(25)		NOT NULL
+	name                VARCHAR(35)     NOT NULL,
+	emailAddress        VARCHAR(30)     NOT NULL,
+	taxpayerID          BIGINT          PRIMARY KEY,
+	qualification       VARCHAR(25)     NOT NULL
 );
 
 CREATE SEQUENCE sequence_audience_id;
 
 CREATE TABLE audiences (
-	audience_id		BIGSERIAL	PRIMARY KEY,
-	number			INT			NOT NULL,
+	audience_id     BIGSERIAL   PRIMARY KEY,
+	number          INT         NOT NULL,
 	CONSTRAINT number CHECK (number > 0)
 );
 
 CREATE SEQUENCE sequence_discipline_id;
 
 CREATE TABLE disciplines(
-	discipline_id	BIGSERIAL 		PRIMARY KEY,
-	name			VARCHAR(50)		NOT NULL
+	discipline_id   BIGSERIAL       PRIMARY KEY,
+	name            VARCHAR(50)     NOT NULL
 );
 
 CREATE SEQUENCE sequence_lesson_id;
 
 CREATE TABLE lessons(
-	lesson_id		BIGSERIAL		PRIMARY KEY,
-	discipline_id	BIGINT			REFERENCES disciplines,
-	date_start		TIMESTAMP		NOT NULL,
-	date_end		TIMESTAMP		NOT NULL,
-	audience_id		BIGINT			REFERENCES audiences,
-	teacher_id		BIGINT			REFERENCES teachers(taxpayerID),
-	group_id		BIGINT			REFERENCES groups
+	lesson_id       BIGSERIAL       PRIMARY KEY,
+	discipline_id   BIGINT          REFERENCES disciplines,
+	date_start      TIMESTAMP       NOT NULL,
+	date_end        TIMESTAMP       NOT NULL,
+	audience_id     BIGINT          REFERENCES audiences,
+	teacher_id      BIGINT          REFERENCES teachers(taxpayerID),
+	group_id        BIGINT          REFERENCES groups
 );
 
 INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДКИ-ПОМ18', 2018 );
