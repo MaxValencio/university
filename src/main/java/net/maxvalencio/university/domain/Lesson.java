@@ -7,7 +7,6 @@ import java.util.List;
 public class Lesson {
 
     private Long id;
-    private String name;
     private Discipline discipline;
     private Date start;
     private Date end;
@@ -24,14 +23,6 @@ public class Lesson {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Discipline getDiscipline() {
@@ -139,7 +130,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "Lesson [id=" + id + ", name=" + name + ", discipline="
+        return "Lesson [id=" + id + ", discipline="
                 + discipline + ", audience=" + audience + "]";
     }
 }
