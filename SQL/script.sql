@@ -52,62 +52,62 @@ CREATE TABLE lessons(
     group_id        BIGINT          REFERENCES groups(id)
 );
 
-INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДКИ-ПОМ18', 2018 );
-INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДКИ-ПОТр18', 2018 );
-INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДКИ-ПОПг17', 2017 );
-INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДЕА-ПОСт16', 2016 );
+INSERT INTO groups VALUES( nextval('sequence_group_id'), 'ДКИ-ПОМ18', 2018 ),
+    ( nextval('sequence_group_id'), 'ДКИ-ПОТр18', 2018 ),
+    ( nextval('sequence_group_id'), 'ДКИ-ПОПг17', 2017 ),
+    ( nextval('sequence_group_id'), 'ДЕА-ПОСт16', 2016 );
 
-INSERT INTO students VALUES( 10000411, 'Николай Харченко', 'nk_harc@gmail.com', 'first' );
-INSERT INTO students VALUES(10000412, 'Олексей Богданов', 'bogdanov@gmail.com', 'first');
-INSERT INTO students VALUES(10000413, 'Тимофей Васейко', 't_vas@gmail.com', 'first', 2);
-INSERT INTO students VALUES(10000414, 'Оксана Рубаненко', 'oxs_rub@gmail.com', 'first' , 1);
-INSERT INTO students VALUES(10000415, 'Татьяна Немашкало', 'tt_nemashko@gmail.com', 'first', 2);
-INSERT INTO students VALUES(10000416, 'Михаил Сторожко', 'mick_storoj@gmail.com', 'first', 3);
-INSERT INTO students VALUES(10000417, 'Артём Яшин', 'artem_yashin@gmail.com', 'first');
-INSERT INTO students VALUES(10000418, 'Дмитрий Файнер', 'dm_fainer@gmail.com', 'first');
-INSERT INTO students VALUES(10000419, 'Елена Хаченкова', 'elenhach@gmail.com', 'third');
-INSERT INTO students VALUES(10000420, 'Николай Лепский', 'nk_leps@gmail.com', 'first');
-INSERT INTO students VALUES(10000421, 'Евгений Сушко', 'sushka@gmail.com' , 'first');
-INSERT INTO students VALUES(10000422, 'Михаил Купцов', 'm_kupzov@gmail.com', 'second');
-INSERT INTO students VALUES(10000423, 'Дмитрий Васеленко', 'dimitrius@gmail.com', 'second');
-INSERT INTO students VALUES(10000424, 'Катерина Рубан', 'kateruban@gmail.com', 'second');
-INSERT INTO students VALUES(10000425, 'Алёна Чванина', 'alenacvav@gmail.com', 'third');
-INSERT INTO students VALUES(10000426, 'Богдан Богомол', 'bog_bog@gmail.com', 'first');
-INSERT INTO students VALUES(10000427, 'Андрей Яшинко', 'andru@gmail.com', 'first');
-INSERT INTO students VALUES(10000428, 'Дмитрий Фоменко', 'fomenko@gmail.com', 'second');
-INSERT INTO students VALUES(10000429, 'Елена Конотоп', 'kohjtjp@gmail.com', 'first');
-INSERT INTO students VALUES(10000430, 'Семён Коваленко', 'kovalek@gmail.com', 'second');
-INSERT INTO students VALUES(10000431, 'Николай Тризуб', 'niktrizub@gmail.com', 'third');
-INSERT INTO students VALUES(10000432, 'Олексей Шаповал', 'shapoval@gmail.com', 'second');
-INSERT INTO students VALUES(10000433, 'Анатолий Киценко', 'kicko_an@gmail.com', 'third');
-INSERT INTO students VALUES(10000434, 'Оксана Митина', 'mitin_oxs@gmail.com', 'first');
-INSERT INTO students VALUES(10000435, 'Екатерина Шарикало', 'sharikalo_ekat@gmail.com', 'first');
-INSERT INTO students VALUES(10000436, 'Михаил Шевченко', 'mick_sheva@gmail.com', 'first');
-INSERT INTO students VALUES(10000437, 'Артём Дудка', 'arti_dudka@gmail.com', 'third');
-INSERT INTO students VALUES(10000438, 'Дмитрий Бондар', 'lm_bondar@gmail.com', 'third');
-INSERT INTO students VALUES(10000439, 'Елена Божедай', 'bojedai@gmail.com', 'third');
+INSERT INTO students VALUES( 10000411, 'Николай Харченко', 'nk_harc@gmail.com', 'first' ),
+    (10000412, 'Олексей Богданов', 'bogdanov@gmail.com', 'first'),
+    (10000413, 'Тимофей Васейко', 't_vas@gmail.com', 'first'),
+    (10000414, 'Оксана Рубаненко', 'oxs_rub@gmail.com', 'first'),
+    (10000415, 'Татьяна Немашкало', 'tt_nemashko@gmail.com', 'first'),
+    (10000416, 'Михаил Сторожко', 'mick_storoj@gmail.com', 'first'),
+    (10000417, 'Артём Яшин', 'artem_yashin@gmail.com', 'first'),
+    (10000418, 'Дмитрий Файнер', 'dm_fainer@gmail.com', 'first'),
+    (10000419, 'Елена Хаченкова', 'elenhach@gmail.com', 'third'),
+    (10000420, 'Николай Лепский', 'nk_leps@gmail.com', 'first'),
+    (10000421, 'Евгений Сушко', 'sushka@gmail.com' , 'first'),
+    (10000422, 'Михаил Купцов', 'm_kupzov@gmail.com', 'second'),
+    (10000423, 'Дмитрий Васеленко', 'dimitrius@gmail.com', 'second'),
+    (10000424, 'Катерина Рубан', 'kateruban@gmail.com', 'second'),
+    (10000425, 'Алёна Чванина', 'alenacvav@gmail.com', 'third'),
+    (10000426, 'Богдан Богомол', 'bog_bog@gmail.com', 'first'),
+    (10000427, 'Андрей Яшинко', 'andru@gmail.com', 'first'),
+    (10000428, 'Дмитрий Фоменко', 'fomenko@gmail.com', 'second'),
+    (10000429, 'Елена Конотоп', 'kohjtjp@gmail.com', 'first'),
+    (10000430, 'Семён Коваленко', 'kovalek@gmail.com', 'second'),
+    (10000431, 'Николай Тризуб', 'niktrizub@gmail.com', 'third'),
+    (10000432, 'Олексей Шаповал', 'shapoval@gmail.com', 'second'),
+    (10000433, 'Анатолий Киценко', 'kicko_an@gmail.com', 'third'),
+    (10000434, 'Оксана Митина', 'mitin_oxs@gmail.com', 'first'),
+    (10000435, 'Екатерина Шарикало', 'sharikalo_ekat@gmail.com', 'first'),
+    (10000436, 'Михаил Шевченко', 'mick_sheva@gmail.com', 'first'),
+    (10000437, 'Артём Дудка', 'arti_dudka@gmail.com', 'third'),
+    (10000438, 'Дмитрий Бондар', 'lm_bondar@gmail.com', 'third'),
+    (10000439, 'Елена Божедай', 'bojedai@gmail.com', 'third');
 
-INSERT INTO teachers VALUES(39808038040191, 'Ковалчук Любовь Васильевна', 'kovalchuklv@gmail.com', 'ст.препод.');
-INSERT INTO teachers VALUES(72614939464103, 'Буданов Павел Феофанович', 'budanov_pf@gmail.com', 'доцент к.т.н.');
-INSERT INTO teachers VALUES(17205626336334, 'Егорова Ольга Юрьевна', 'egorova_ou@gmail.com', 'доц.к.н.');
-INSERT INTO teachers VALUES(89971548400703, 'Чернюк Артем Михайлович', 'chernuk_am@gmail.com', 'проф.д.н.');
-INSERT INTO teachers VALUES(37722487125591, 'Литвин Олег Олегович', 'litvin_oo@gmail.com', 'ст.препод.');
+INSERT INTO teachers VALUES(39808038040191, 'Ковалчук Любовь Васильевна', 'kovalchuklv@gmail.com', 'ст.препод.'),
+    (72614939464103, 'Буданов Павел Феофанович', 'budanov_pf@gmail.com', 'доцент к.т.н.'),
+    (17205626336334, 'Егорова Ольга Юрьевна', 'egorova_ou@gmail.com', 'доц.к.н.'),
+    (89971548400703, 'Чернюк Артем Михайлович', 'chernuk_am@gmail.com', 'проф.д.н.'),
+    (37722487125591, 'Литвин Олег Олегович', 'litvin_oo@gmail.com', 'ст.препод.');
 
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 100);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 101);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 102);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 103);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 200);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 210);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 256);
-INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 430);
+INSERT INTO audiences VALUES(nextval('sequence_audience_id'), 100),
+    (nextval('sequence_audience_id'), 101),
+    (nextval('sequence_audience_id'), 102),
+    (nextval('sequence_audience_id'), 103),
+    (nextval('sequence_audience_id'), 200),
+    (nextval('sequence_audience_id'), 210),
+    (nextval('sequence_audience_id'), 256),
+    (nextval('sequence_audience_id'), 430);
 
-INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Программная инженерия');
-INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Основы энерго и ресурсосбережения');
-INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Дидактические основы профессионального образования');
-INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Теоретическая и прикладная механика');
-INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Основы инженерно-педагогического творчества');
+INSERT INTO disciplines VALUES(nextval('sequence_discipline_id'), 'Программная инженерия'),
+    (nextval('sequence_discipline_id'), 'Основы энерго и ресурсосбережения'),
+    (nextval('sequence_discipline_id'), 'Дидактические основы профессионального образования'),
+    (nextval('sequence_discipline_id'), 'Теоретическая и прикладная механика'),
+    (nextval('sequence_discipline_id'), 'Основы инженерно-педагогического творчества');
 
-INSERT INTO lessons VALUES(nextval('sequence_lesson_id'), 1,'2019-04-04 08:00:00', '2019-04-04 09:20:00', 3, 39808038040191, 3);
-INSERT INTO lessons VALUES(nextval('sequence_lesson_id'), 3,'2019-04-04 09:30:00', '2019-04-04 10:50:00', 1, 72614939464103, 1);
-INSERT INTO lessons VALUES(nextval('sequence_lesson_id'), 5,'2019-04-04 11:20:00', '2019-04-04 12:50:00', 6, 37722487125591, 1);
+INSERT INTO lessons VALUES(nextval('sequence_lesson_id'), 1,'2019-04-04 08:00:00', '2019-04-04 09:20:00', 3, 39808038040191, 3),
+    (nextval('sequence_lesson_id'), 3,'2019-04-04 09:30:00', '2019-04-04 10:50:00', 1, 72614939464103, 1),
+    (nextval('sequence_lesson_id'), 5,'2019-04-04 11:20:00', '2019-04-04 12:50:00', 6, 37722487125591, 1);
