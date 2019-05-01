@@ -1,43 +1,72 @@
 package net.maxvalencio.university.domain;
 
-public class Student extends Person {
+public class Student {
 
-    private Long studentCardNumber;
-    private String course;
+    private Long id;
+    private String name;
+    private String emailAddress;
+    private int course;
+    private Long groupId;
+    
+    public Student() {};
 
     public Student(String name) {
         this.setName(name);
     }
 
-    public Student(String name, String emailAddress, String course) {
+    public Student(String name, String emailAddress, int course) {
         this.setName(name);
         this.setEmailAddress(emailAddress);
         this.course = course;
     }
-
-    public Long getStudentCardNumber() {
-        return studentCardNumber;
+    
+    public Long getId() {
+        return id;
     }
 
-    public void setStudentCardNumber(Long studentCardNumber) {
-        this.studentCardNumber = studentCardNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCourse() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
+    }
+    
+    public long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((studentCardNumber == null)
-                ? 0
-                : studentCardNumber.hashCode());
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
         return result;
     }
 
@@ -46,18 +75,32 @@ public class Student extends Person {
         if (this == obj) {
             return true;
         }
-        if (!super.equals(obj)) {
+        if (obj == null) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
         Student other = (Student) obj;
-        if (studentCardNumber == null) {
-            if (other.studentCardNumber != null) {
+        if (id == null) {
+            if (other.id != null) {
                 return false;
             }
-        } else if (!studentCardNumber.equals(other.studentCardNumber)) {
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (groupId == null) {
+            if (other.groupId != null) {
+                return false;
+            }
+        } else if (!groupId.equals(other.groupId)) {
             return false;
         }
         return true;
@@ -65,7 +108,6 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student [" + super.toString()
-                + "studentCardNumber=" + studentCardNumber + "]";
+        return "Student [id=" + id + ", name=" + name + ", groupId=" + groupId + "]";
     }
 }

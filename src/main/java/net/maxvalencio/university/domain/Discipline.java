@@ -11,6 +11,11 @@ public class Discipline {
     public Discipline(String name) {
         this.name = name;
     }
+    
+    public Discipline(long id, String name) {
+        this.name = name;
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
