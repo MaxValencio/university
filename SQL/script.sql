@@ -1,11 +1,12 @@
-DROP TABLE IF EXISTS faculties, students, groups, teachers, audiences, disciplines,
-	lessons, teachers_disciplines, faculties_teachers, faculties_groups
-	CASCADE;
+DROP TABLE IF EXISTS 
+    faculties, students, groups, teachers, audiences, disciplines,
+    lessons, teachers_disciplines, faculties_teachers, faculties_groups
+    CASCADE;
 	
 DROP SEQUENCE IF EXISTS 
-	sequence_faculties_id, sequence_group_id, sequence_student_id, sequence_teacher_id, 
-	sequence_audience_id, sequence_discipline_id, sequence_lesson_id 
-	CASCADE;
+    sequence_faculties_id, sequence_group_id, sequence_student_id, sequence_teacher_id, 
+    sequence_audience_id, sequence_discipline_id, sequence_lesson_id 
+    CASCADE;
 
 CREATE SEQUENCE sequence_faculties_id;
 
@@ -78,7 +79,7 @@ CREATE TABLE teachers_disciplines(
 );
 
 CREATE TABLE faculties_teachers(
-    faculty_id		BIGINT		REFERENCES faculties(id),
+    faculty_id		BIGINT		REFERENCES faculties(id) ON DELETE CASCADE,
     teacher_id		BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
     CONSTRAINT faculty_id_teacher_id_pk PRIMARY KEY(faculty_id, teacher_id)
 );
