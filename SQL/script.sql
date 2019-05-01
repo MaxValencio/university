@@ -10,8 +10,8 @@ DROP SEQUENCE IF EXISTS
 CREATE SEQUENCE sequence_faculties_id;
 
 CREATE TABLE faculties (
-	id			BIGSERIAL		PRIMARY KEY,
-	name		VARCHAR(40)		NOT NULL
+	id          BIGSERIAL		PRIMARY KEY,
+	name        VARCHAR(40)		NOT NULL
 );
 
 CREATE SEQUENCE sequence_group_id;
@@ -19,8 +19,8 @@ CREATE SEQUENCE sequence_group_id;
 CREATE TABLE groups (
     id                  BIGSERIAL       PRIMARY KEY,
     name                VARCHAR(25)     UNIQUE NOT NULL,
-    year    		    INT             NOT NULL,
-	faculty_id			BIGINT			REFERENCES faculties(id)
+    year                INT             NOT NULL,
+    faculty_id          BIGINT          REFERENCES faculties(id)
 );
 
 CREATE SEQUENCE sequence_student_id;
@@ -29,7 +29,7 @@ CREATE TABLE students (
     id                      BIGSERIAL       PRIMARY KEY,
     name                    VARCHAR(35)     NOT NULL,
     emailAddress            VARCHAR(30)     UNIQUE NOT NULL,
-    course                  INT				NOT NULL,
+    course                  INT             NOT NULL,
     group_id                BIGINT          REFERENCES groups(id),
     CONSTRAINT student_pk CHECK (id > 0),
 	CHECK (course between 1 and 7)
@@ -72,8 +72,8 @@ CREATE TABLE lessons(
 );
 
 CREATE TABLE teachers_disciplines(
-	teacher_id		BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
-	discipline_id	BIGINT		REFERENCES disciplines(id) ON DELETE CASCADE,
+	teacher_id      BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
+	discipline_id   BIGINT		REFERENCES disciplines(id) ON DELETE CASCADE,
 	CONSTRAINT teacher_id_discipline_id_pk PRIMARY KEY(teacher_id, discipline_id)
 );
 
@@ -88,13 +88,13 @@ CREATE TABLE faculties_groups(
 );
 
 INSERT INTO faculties(name) VALUES 
-	('Факультет Машиностроения'),
-	('Факультет Транспорта'),
-	('Факультет Информационных технологий');
+    ('Факультет Машиностроения'),
+    ('Факультет Транспорта'),
+    ('Факультет Информационных технологий');
 	
 
 INSERT INTO groups(name, year) VALUES
-	('ДКИ-ПОМ18', 2018),
+    ('ДКИ-ПОМ18', 2018),
     ('ДКИ-ПОТр18', 2018),
     ('ДКИ-ПОИт17', 2017),
     ('ДЕА-ПОИт16', 2016);
@@ -131,7 +131,7 @@ INSERT INTO students(name, emailAddress, course, group_id) VALUES
     ('Елена Божедай', 'bojedai@gmail.com', 3, 3);
 
 INSERT INTO teachers(name, emailAddress, qualification) VALUES
-	('Ковалчук Любовь Васильевна', 'kovalchuklv@gmail.com', 'ст.препод.' ),
+    ('Ковалчук Любовь Васильевна', 'kovalchuklv@gmail.com', 'ст.препод.' ),
     ('Буданов Павел Феофанович', 'budanov_pf@gmail.com', 'доцент к.т.н.'),
     ('Егорова Ольга Юрьевна', 'egorova_ou@gmail.com', 'доц.к.н.'),
     ('Чернюк Артем Михайлович', 'chernuk_am@gmail.com', 'проф.д.н.'),
@@ -147,13 +147,13 @@ INSERT INTO audiences(number) VALUES(100),
     (430);
 
 INSERT INTO disciplines(name) VALUES
-	('Программная инженерия'),
+    ('Программная инженерия'),
     ('Основы энерго и ресурсосбережения'),
     ('Дидактические основы профессионального образования'),
     ('Теоретическая и прикладная механика'),
     ('Основы инженерно-педагогического творчества');
 
 INSERT INTO lessons(discipline_id, date_start, date_end, audience_id, teacher_id, group_id) VALUES
-	(1,'2019-04-04 08:00:00', '2019-04-04 09:20:00', 3, 3, 3),
+    (1,'2019-04-04 08:00:00', '2019-04-04 09:20:00', 3, 3, 3),
     (3,'2019-04-04 09:30:00', '2019-04-04 10:50:00', 1, 1, 1),
     (5,'2019-04-04 11:20:00', '2019-04-04 12:50:00', 6, 2, 1);
