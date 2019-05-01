@@ -72,19 +72,21 @@ CREATE TABLE lessons(
 );
 
 CREATE TABLE teachers_disciplines(
-	teacher_id      BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
-	discipline_id   BIGINT		REFERENCES disciplines(id) ON DELETE CASCADE,
-	CONSTRAINT teacher_id_discipline_id_pk PRIMARY KEY(teacher_id, discipline_id)
+    teacher_id      BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
+    discipline_id   BIGINT		REFERENCES disciplines(id) ON DELETE CASCADE,
+    CONSTRAINT teacher_id_discipline_id_pk PRIMARY KEY(teacher_id, discipline_id)
 );
 
 CREATE TABLE faculties_teachers(
-	faculty_id		BIGINT		REFERENCES faculties(id),
-	teacher_id		BIGINT		REFERENCES teachers(id) ON DELETE CASCADE
+    faculty_id		BIGINT		REFERENCES faculties(id),
+    teacher_id		BIGINT		REFERENCES teachers(id) ON DELETE CASCADE,
+    CONSTRAINT faculty_id_teacher_id_pk PRIMARY KEY(faculty_id, teacher_id)
 );
 
 CREATE TABLE faculties_groups(
-	faculty_id		BIGINT		REFERENCES faculties(id) ON DELETE CASCADE,
-	group_id		BIGINT		REFERENCES groups(id) ON DELETE CASCADE 
+    faculty_id		BIGINT		REFERENCES faculties(id) ON DELETE CASCADE,
+    group_id		BIGINT		REFERENCES groups(id) ON DELETE CASCADE,
+    CONSTRAINT faculty_id_group_id_pk PRIMARY KEY(faculty_id, group_id)
 );
 
 INSERT INTO faculties(name) VALUES 
