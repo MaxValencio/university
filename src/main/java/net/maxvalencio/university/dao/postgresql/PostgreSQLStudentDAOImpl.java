@@ -125,17 +125,17 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
             statement.setInt(3, course);
             statement.setLong(4, group_id);
             statement.setLong(5, id);
-            statement.executeUpdate();
             
-            resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            
-            student = new Student();
-            student.setName(name);
-            student.setEmailAddress(emailAddress);
-            student.setCourse(course);
-            student.setGroupId(group_id);
-            
+            resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                student = new Student();
+                student.setId(resultSet.getLong("id"));
+                student.setName(resultSet.getString("name"));
+                student.setEmailAddress(resultSet.getString("emailAddress"));
+                student.setCourse(resultSet.getInt("course"));
+                student.setGroupId(resultSet.getLong("group_id"));
+                return student;
+            }
         } catch (SQLException e) {
             System.err.println("Error in update() method of PostgrSQLStudentDAOImpl class");
         } finally {
@@ -154,7 +154,7 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
                         + "method of PostgreSQLStudentDAOImpl class");
             }
         }
-        return student;
+        return null;
     }
 
     @Override

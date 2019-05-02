@@ -12,7 +12,7 @@ CREATE SEQUENCE sequence_faculties_id;
 
 CREATE TABLE faculties (
     id          BIGSERIAL		PRIMARY KEY,
-    name        VARCHAR(40)		NOT NULL
+    name        VARCHAR(40)		UNIQUE NOT NULL
 );
 
 CREATE SEQUENCE sequence_group_id;

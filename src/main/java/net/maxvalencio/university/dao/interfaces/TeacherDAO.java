@@ -9,15 +9,13 @@ public interface TeacherDAO {
 
     Teacher create(String name, String emailAddress, String qualification, List<Discipline> disciplines);
     
-    Teacher create(String name, String emailAddress, String qualification, Discipline discipline);
-    
     Teacher getById(long id);
     
     Teacher update(long id, String name, String emailAddress, String qualification, List<Discipline> disciplines);
     
-    boolean addDiscipline(long id, long discipline_id);
+    boolean addTeacherDiscipline(long id, long discipline_id);
     
-    boolean deleteDiscipline(long id, long discipline_id);
+    boolean deleteTeacherDiscipline(long id, long discipline_id);
     
     boolean delete(long id);
     

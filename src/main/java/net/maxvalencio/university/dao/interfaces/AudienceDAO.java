@@ -5,15 +5,17 @@ import net.maxvalencio.university.domain.Audience;
 
 public interface AudienceDAO {
     
-    boolean create();
+    Audience create(int number);
     
-    Audience getById(int id);
+    Audience getById(long id);
+    
+    Audience getByNumber(int number);
     
     List<Audience> getAll();
     
-    boolean update(Audience audience);
+    boolean update(long id);
     
-    boolean delete(Audience audience);
+    boolean delete(long id);
     
     
 }
