@@ -11,11 +11,9 @@ public interface AudienceDAO {
     
     Audience getByNumber(int number);
     
-    List<Audience> getAll();
-    
-    boolean update(long id);
+    Audience update(long id, int number);
     
     boolean delete(long id);
     
-    
+    List<Audience> getAll();  
 }

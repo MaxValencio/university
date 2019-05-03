@@ -9,13 +9,13 @@ import net.maxvalencio.university.domain.Teacher;
 
 public interface FacultyDAO {
     
-    boolean insertFaculty();
+    boolean create(String name, List<Teacher> teachers, List<Group> groups);
     
     Faculty getById(long id);
     
     Faculty getByName(String name);
     
-    boolean update(long id);
+    boolean update(long id, String name);
     
     boolean delete(long id);
     
@@ -24,6 +24,4 @@ public interface FacultyDAO {
     List<Teacher> getAllTeachers(long id);
     
     List<Group> getAllGroups(long id);
-    
-    List<Student> getAllStudents(long id);
 }

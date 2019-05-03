@@ -6,7 +6,7 @@ public class Student {
     private String name;
     private String emailAddress;
     private int course;
-    private Long groupId;
+    
     
     public Student() {};
 
@@ -51,14 +51,6 @@ public class Student {
     public void setCourse(int course) {
         this.course = course;
     }
-    
-    public long getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
 
     @Override
     public int hashCode() {
@@ -66,7 +58,6 @@ public class Student {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
         return result;
     }
 
@@ -96,18 +87,11 @@ public class Student {
         } else if (!name.equals(other.name)) {
             return false;
         }
-        if (groupId == null) {
-            if (other.groupId != null) {
-                return false;
-            }
-        } else if (!groupId.equals(other.groupId)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", groupId=" + groupId + "]";
+        return "Student [id=" + id + ", name=" + name + "]";
     }
 }

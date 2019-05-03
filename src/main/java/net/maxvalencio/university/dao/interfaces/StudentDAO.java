@@ -5,11 +5,11 @@ import net.maxvalencio.university.domain.Student;
 
 public interface StudentDAO {
     
-    Student create(String name, String emailAddress, int course, long group_id);
+    Student create(String name, String emailAddress, int course);
     
     Student getById(long id);
     
-    Student update(long id, String name, String emailAddress, int course, long group_id);
+    Student update(long id, String name, String emailAddress, int course);
     
     boolean delete(long id);
     

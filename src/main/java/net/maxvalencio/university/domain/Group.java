@@ -41,7 +41,15 @@ public class Group {
     public void setAdmissionYear(int admissionYear) {
         this.admissionYear = admissionYear;
     }
+    
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+    
     public void addStudent(Student student) {
         students.add(student);
     }

@@ -119,25 +119,24 @@ public class PostgreSQLDisciplineDAOImpl implements DisciplineDAO {
                 discipline.setName(resultSet.getString("name"));
             }
             return discipline;
-            
         }  catch (SQLException e) {
             System.err.println("Error in getByName() method of PostgrSQLDisciplineDAOImpl class");
-         } finally {
-             try {
-                 if (resultSet != null) {
-                     resultSet.close();
-                 }
-                 if (statement != null) {
-                     statement.close();
-                 }
-                 if (connection != null) {
-                     connection.close();
-                 }
-             } catch (SQLException e) {
-                 System.err.println("Cannot execute close connection in getByName() "
-                         + "method of PostgreSQLDisciplineDAOImpl class");
-             }
-         }
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Cannot execute close connection in getByName() "
+                        + "method of PostgreSQLDisciplineDAOImpl class");
+            }
+        }
         return null;
     }
 
@@ -156,7 +155,7 @@ public class PostgreSQLDisciplineDAOImpl implements DisciplineDAO {
             statement.setLong(2, id);
             
             resultSet = statement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 discipline = new Discipline();
                 discipline.setId(resultSet.getLong("id"));
                 discipline.setName(resultSet.getString("name"));

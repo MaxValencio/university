@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS 
-    faculties, students, groups, teachers, audiences, disciplines,
-    lessons, teachers_disciplines, faculties_teachers, faculties_groups
+    faculties, students, groups, teachers, audiences, disciplines, lessons, 
+	teachers_disciplines, faculties_teachers, faculties_groups, groups_students
     CASCADE;
 	
 DROP SEQUENCE IF EXISTS 
@@ -20,8 +20,7 @@ CREATE SEQUENCE sequence_group_id;
 CREATE TABLE groups (
     id                  BIGSERIAL       PRIMARY KEY,
     name                VARCHAR(25)     UNIQUE NOT NULL,
-    year                INT             NOT NULL,
-    faculty_id          BIGINT          REFERENCES faculties(id)
+    year                INT             NOT NULL
 );
 
 CREATE SEQUENCE sequence_student_id;
@@ -90,6 +89,12 @@ CREATE TABLE faculties_groups(
     CONSTRAINT faculty_id_group_id_pk PRIMARY KEY(faculty_id, group_id)
 );
 
+CREATE TABLE groups_students(
+    group_id		BIGINT		REFERENCES groups(id) ON DELETE CASCADE,
+    student_id		BIGINT		REFERENCES students(id) ON DELETE CASCADE,
+    CONSTRAINT group_id_student_id_pk PRIMARY KEY(group_id, student_id)
+);
+
 INSERT INTO faculties(name) VALUES 
     ('Факультет Машиностроения'),
     ('Факультет Транспорта'),
@@ -102,36 +107,36 @@ INSERT INTO groups(name, year) VALUES
     ('ДКИ-ПОИт17', 2017),
     ('ДЕА-ПОИт16', 2016);
 
-INSERT INTO students(name, emailAddress, course, group_id) VALUES
-	('Николай Харченко', 'nk_harc@gmail.com', 1, 1),
-    ('Олексей Богданов', 'bogdanov@gmail.com', 1, 1),
-    ('Тимофей Васейко', 't_vas@gmail.com', 1, 1),
-    ('Оксана Рубаненко', 'oxs_rub@gmail.com', 1, 1),
-    ('Татьяна Немашкало', 'tt_nemashko@gmail.com', 1, 1),
-    ('Михаил Сторожко', 'mick_storoj@gmail.com', 1, 1),
-    ('Артём Яшин', 'artem_yashin@gmail.com', 1, 1),
-    ('Дмитрий Файнер', 'dm_fainer@gmail.com', 1, 1),
-    ('Елена Хаченкова', 'elenhach@gmail.com', 3, 3),
-    ('Николай Лепский', 'nk_leps@gmail.com', 1, 1),
-    ('Евгений Сушко', 'sushka@gmail.com', 1, 1),
-    ('Михаил Купцов', 'm_kupzov@gmail.com', 2, 2),
-    ('Дмитрий Васеленко', 'dimitrius@gmail.com', 2, 2),
-    ('Катерина Рубан', 'kateruban@gmail.com', 2, 2),
-    ('Алёна Чванина', 'alenacvav@gmail.com', 3, 3),
-    ('Богдан Богомол', 'bog_bog@gmail.com', 1, 1),
-    ('Андрей Яшинко', 'andru@gmail.com', 1,1),
-    ('Дмитрий Фоменко', 'fomenko@gmail.com', 2, 2),
-    ('Елена Конотоп', 'kohjtjp@gmail.com', 1, 1),
-    ('Семён Коваленко', 'kovalek@gmail.com', 2, 2),
-    ('Николай Тризуб', 'niktrizub@gmail.com', 3, 3),
-    ('Олексей Шаповал', 'shapoval@gmail.com', 2, 2),
-    ('Анатолий Киценко', 'kicko_an@gmail.com', 3, 3),
-    ('Оксана Митина', 'mitin_oxs@gmail.com', 1, 1),
-    ('Екатерина Шарикало', 'sharikalo_ekat@gmail.com', 1, 1),
-    ('Михаил Шевченко', 'mick_sheva@gmail.com', 1, 1),
-    ('Артём Дудка', 'arti_dudka@gmail.com', 3, 3),
-    ('Дмитрий Бондар', 'lm_bondar@gmail.com', 3, 3),
-    ('Елена Божедай', 'bojedai@gmail.com', 3, 3);
+INSERT INTO students(name, emailAddress, course) VALUES
+	('Николай Харченко', 'nk_harc@gmail.com', 1),
+    ('Олексей Богданов', 'bogdanov@gmail.com', 1),
+    ('Тимофей Васейко', 't_vas@gmail.com', 1),
+    ('Оксана Рубаненко', 'oxs_rub@gmail.com', 1),
+    ('Татьяна Немашкало', 'tt_nemashko@gmail.com', 1),
+    ('Михаил Сторожко', 'mick_storoj@gmail.com', 1),
+    ('Артём Яшин', 'artem_yashin@gmail.com', 1),
+    ('Дмитрий Файнер', 'dm_fainer@gmail.com', 1),
+    ('Елена Хаченкова', 'elenhach@gmail.com', 3),
+    ('Николай Лепский', 'nk_leps@gmail.com', 1),
+    ('Евгений Сушко', 'sushka@gmail.com', 1),
+    ('Михаил Купцов', 'm_kupzov@gmail.com', 2),
+    ('Дмитрий Васеленко', 'dimitrius@gmail.com', 2),
+    ('Катерина Рубан', 'kateruban@gmail.com', 2),
+    ('Алёна Чванина', 'alenacvav@gmail.com', 3),
+    ('Богдан Богомол', 'bog_bog@gmail.com', 1),
+    ('Андрей Яшинко', 'andru@gmail.com', 1),
+    ('Дмитрий Фоменко', 'fomenko@gmail.com', 2),
+    ('Елена Конотоп', 'kohjtjp@gmail.com', 1),
+    ('Семён Коваленко', 'kovalek@gmail.com', 2),
+    ('Николай Тризуб', 'niktrizub@gmail.com', 3),
+    ('Олексей Шаповал', 'shapoval@gmail.com', 2),
+    ('Анатолий Киценко', 'kicko_an@gmail.com', 3),
+    ('Оксана Митина', 'mitin_oxs@gmail.com', 1),
+    ('Екатерина Шарикало', 'sharikalo_ekat@gmail.com', 1),
+    ('Михаил Шевченко', 'mick_sheva@gmail.com', 1),
+    ('Артём Дудка', 'arti_dudka@gmail.com', 3),
+    ('Дмитрий Бондар', 'lm_bondar@gmail.com', 3),
+    ('Елена Божедай', 'bojedai@gmail.com', 3);
 
 INSERT INTO teachers(name, emailAddress, qualification) VALUES
     ('Ковалчук Любовь Васильевна', 'kovalchuklv@gmail.com', 'ст.препод.' ),

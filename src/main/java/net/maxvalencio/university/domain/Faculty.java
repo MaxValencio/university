@@ -8,7 +8,6 @@ public class Faculty {
     private Long id;
     private String name;
     private List<Teacher> teachers = new ArrayList<>();
-    private List<Student> students = new ArrayList<>();
     private List<Group> groups = new ArrayList<>();
 
     public Faculty() {
@@ -42,14 +41,6 @@ public class Faculty {
         return teachers;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
     public List<Group> getGroups() {
         return groups;
     }
@@ -64,14 +55,6 @@ public class Faculty {
 
     public void removeTeacher(Teacher teacher) {
         teachers.remove(teacher);
-    }
-
-    public void addStudent(Student student) {
-        students.add(student);
-    }
-
-    public void removeStudent(Student student) {
-        students.remove(student);
     }
 
     @Override

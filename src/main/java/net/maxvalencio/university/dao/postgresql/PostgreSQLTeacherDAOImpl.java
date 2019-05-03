@@ -52,9 +52,8 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
 
             teacher = getById(generatedId);
             return teacher;
-
         } catch (SQLException e) {
-            System.err.println("Error");
+            System.err.println("Error in create() method of PostgrSQLTeacherDAOImpl class");
         } finally {
             try {
                 if (resultSet != null) {
@@ -70,9 +69,8 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
                     connection.close();
                 }
             } catch (SQLException e) {
-                System.err
-                        .println("Cannot execute close connection in create() "
-                                + "method of PostgreSQLTeacherDAOImpl class");
+                System.err.println("Cannot execute close connection in create() "
+                        + "method of PostgreSQLTeacherDAOImpl class");
             }
         }
         return null;
@@ -81,7 +79,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
     @Override
     public Teacher getById(long id) {
         String sqlTeachers = "SELECT * FROM teachers WHERE id = ?;";
-        String sqlTeachersDisciplines = "SELECT * FROM teachers_disciplines where teacher_id = ?;";
+        String sqlTeachersDisciplines = "SELECT * FROM teachers_disciplines WHERE teacher_id = ?;";
 
         Teacher teacher = null;
         Connection connection = null;
@@ -115,16 +113,14 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
             PostgreSQLDisciplineDAOImpl daoDiscipline = new PostgreSQLDisciplineDAOImpl();
 
             while (rsTeachersDisciplines.next()) {
-                long disciplineId = rsTeachersDisciplines
-                        .getLong("discipline_id");
+                long disciplineId = rsTeachersDisciplines.getLong("discipline_id");
                 Discipline discipline = daoDiscipline.getById(disciplineId);
                 teacherDisciplines.add(discipline);
             }
             teacher.setDisciplines(teacherDisciplines);
             return teacher;
         } catch (SQLException e) {
-            System.err.println(
-                    "Error in getById() method of PostgrSQLTeacherDAOImpl class");
+            System.err.println("Error in getById() method of PostgrSQLTeacherDAOImpl class");
         } finally {
             try {
                 if (rsTeachers != null) {
@@ -143,9 +139,8 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
                     connection.close();
                 }
             } catch (SQLException e) {
-                System.err
-                        .println("Cannot execute close connection in getById() "
-                                + "method of PostgreSQLTeacherDAOImpl class");
+                System.err.println("Cannot execute close connection in getById() "
+                        + "method of PostgreSQLTeacherDAOImpl class");
             }
         }
         return null;
@@ -181,7 +176,6 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
 
             teacher = getById(id);
             return teacher;
-
         } catch (SQLException e) {
             System.err.println("Error in update() method of PostgrSQLTeacherDAOImpl class");
         } finally {

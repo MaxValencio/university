@@ -16,8 +16,8 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
     private DAOFactory daoFactory = new DAOFactory();
 
     @Override
-    public Student create(String name, String emailAddress, int course, long group_id) {
-        String sql = "INSERT INTO students(name, emailAddress, course, group_id) VALUES( ?, ?, ?, ?);";
+    public Student create(String name, String emailAddress, int course) {
+        String sql = "INSERT INTO students(name, emailAddress, course) VALUES( ?, ?, ?);";
         
         Student student = null;
         Connection connection = null;
@@ -30,7 +30,6 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
             statement.setString(1, name);
             statement.setString(2, emailAddress);
             statement.setInt(3, course);
-            statement.setLong(4, group_id);
             statement.executeQuery();
             
             resultSet = statement.getGeneratedKeys();
@@ -40,8 +39,8 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
             student.setId(resultSet.getLong("id"));
             student.setName(resultSet.getString("name"));
             student.setEmailAddress(resultSet.getString("emailAddress"));
-            student.setCourse(resultSet.getInt("course")); 
-            student.setGroupId(resultSet.getLong("group_id"));
+            student.setCourse(resultSet.getInt("course"));
+            return student;
         } catch (SQLException e) {
            System.err.println("Error in create() method of PostgrSQLStudentDAOImpl class");
         } finally {
@@ -60,7 +59,7 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
                         + "method of PostgreSQLStudentDAOImpl class");
             }
         }
-        return student;
+        return null;
     }
 
     @Override
@@ -85,8 +84,8 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
                 student.setName(resultSet.getString("name"));
                 student.setEmailAddress(resultSet.getString("emailAddress"));
                 student.setCourse(resultSet.getInt("course"));
-                student.setGroupId(resultSet.getLong("group_id"));
             }
+            return student;
         } catch (SQLException e) {
            System.err.println("Error in getById() method of PostgrSQLStudentDAOImpl class");
         } finally {
@@ -105,13 +104,12 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
                         + "method of PostgreSQLStudentDAOImpl class");
             }
         }
-        return student;
-        
+        return null;
     }
 
     @Override
-    public Student update(long id, String name, String emailAddress, int course, long group_id) {
-        String sql = "UPDATE students SET name = ?, emailAddress = ?, course = ?, group_id = ? WHERE id = ?;";
+    public Student update(long id, String name, String emailAddress, int course) {
+        String sql = "UPDATE students SET name = ?, emailAddress = ?, course = ? WHERE id = ?;";
         
         Student student = null;
         Connection connection = null;
@@ -123,17 +121,15 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
             statement.setString(1, name);
             statement.setString(2, emailAddress);
             statement.setInt(3, course);
-            statement.setLong(4, group_id);
-            statement.setLong(5, id);
+            statement.setLong(4, id);
             
             resultSet = statement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 student = new Student();
                 student.setId(resultSet.getLong("id"));
                 student.setName(resultSet.getString("name"));
                 student.setEmailAddress(resultSet.getString("emailAddress"));
                 student.setCourse(resultSet.getInt("course"));
-                student.setGroupId(resultSet.getLong("group_id"));
                 return student;
             }
         } catch (SQLException e) {
@@ -209,7 +205,6 @@ public class PostgreSQLStudentDAOImpl implements StudentDAO {
                student.setName(resultSet.getString("name"));
                student.setEmailAddress(resultSet.getString("emailAddress"));
                student.setCourse(resultSet.getInt("course"));
-               student.setGroupId(resultSet.getLong("group_id"));
                students.add(student);
            }
            return students;
