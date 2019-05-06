@@ -13,13 +13,8 @@ public interface GroupDAO {
     
     Group update(long id, String name, int admissionYear,  List<Student> students);
     
-    boolean addStudentToGroup(long group_id, long student_id);
-    
-    boolean deleteStudentFromGroup(long group_id, long student_id);
-    
     boolean delete(long id);
     
     List<Group> getAll();
     
-    List<Student> getAllStudentGroup(long group_id);
 }

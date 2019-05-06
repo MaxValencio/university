@@ -64,8 +64,8 @@ CREATE SEQUENCE sequence_lesson_id;
 CREATE TABLE lessons(
     lesson_id       BIGSERIAL       PRIMARY KEY,
     discipline_id   BIGINT          REFERENCES disciplines(id)ON DELETE CASCADE,
-    date_start      TIMESTAMP       NOT NULL,
-    date_end        TIMESTAMP       NOT NULL,
+    date_start      VARCHAR(25)		NOT NULL,
+    date_end        VARCHAR(25)		NOT NULL,
     audience_id     BIGINT          REFERENCES audiences(id) ON DELETE CASCADE,
     teacher_id      BIGINT          REFERENCES teachers(id) ON DELETE CASCADE,
     group_id        BIGINT          REFERENCES groups(id) ON DELETE CASCADE
@@ -93,6 +93,12 @@ CREATE TABLE groups_students(
     group_id		BIGINT		REFERENCES groups(id) ON DELETE CASCADE,
     student_id		BIGINT		REFERENCES students(id) ON DELETE CASCADE,
     CONSTRAINT group_id_student_id_pk PRIMARY KEY(group_id, student_id)
+);
+
+CREATE TABLE lessons_groups(
+    lessons_id		BIGINT		REFERENCES lessons(id) ON DELETE CASCADE,
+    groups_id		BIGINT		REFERENCES groups(id) ON DELETE CASCADE,
+    CONSTRAINT lessons_id_groups_id_pk PRIMARY KEY(lessons_id, groups_id)
 );
 
 INSERT INTO faculties(name) VALUES 

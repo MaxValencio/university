@@ -13,10 +13,6 @@ public interface TeacherDAO {
     
     Teacher update(long id, String name, String emailAddress, String qualification, List<Discipline> disciplines);
     
-    boolean addTeacherDiscipline(long id, long discipline_id);
-    
-    boolean deleteTeacherDiscipline(long id, long discipline_id);
-    
     boolean delete(long id);
     
     List<Teacher> getAll();

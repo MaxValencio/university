@@ -37,7 +37,7 @@ public class PostgreSQLAudienceDAOImpl implements AudienceDAO{
             audience.setNumber(resultSet.getInt("number"));
             return audience;
         } catch (SQLException e) {
-            System.err.println("Error in create() method of PostgrSQLDisciplineDAOImpl class");
+            System.err.println("Error in create() method of PostgrSQLAudienceDAOImpl class");
         } finally {
             try {
                 if (resultSet != null) {
@@ -51,7 +51,7 @@ public class PostgreSQLAudienceDAOImpl implements AudienceDAO{
                 }  
             } catch (SQLException e) {
                 System.err.println("Cannot execute close connection in create() "
-                        + "method of PostgreSQLDisciplineDAOImpl class");
+                        + "method of PostgreSQLAudienceDAOImpl class");
             }               
         }
         return null;
@@ -76,8 +76,8 @@ public class PostgreSQLAudienceDAOImpl implements AudienceDAO{
                 audience  = new Audience();
                 audience.setId(resultSet.getLong("id"));
                 audience.setNumber(resultSet.getInt("number"));
+                return audience;
             }
-            return audience;
         } catch (SQLException e) {
            System.err.println("Error in getById() method of PostgrSQLAudienceDAOImpl class");
         } finally {
@@ -117,8 +117,8 @@ public class PostgreSQLAudienceDAOImpl implements AudienceDAO{
                 audience = new Audience();
                 audience.setId(resultSet.getLong("id"));
                 audience.setNumber(resultSet.getInt("number"));
+                return audience;
             }
-            return audience;
         }  catch (SQLException e) {
             System.err.println("Error in getByNumber() method of PostgrSQLDAudienceDAOImpl class");
         } finally {

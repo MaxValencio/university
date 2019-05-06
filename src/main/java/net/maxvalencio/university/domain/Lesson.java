@@ -8,8 +8,8 @@ public class Lesson {
 
     private Long id;
     private Discipline discipline;
-    private Date start;
-    private Date end;
+    private String dateStart;
+    private String dateEnd;
     private Audience audience;
     private Teacher teacher;
     private List<Group> groups = new ArrayList<>();
@@ -33,20 +33,20 @@ public class Lesson {
         this.discipline = discipline;
     }
 
-    public Date getStart() {
-        return start;
+    public String getDateStart() {
+        return dateStart;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setDateStart(String dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public Date getEnd() {
-        return end;
+    public String getDateEnd() {
+        return dateEnd;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public Audience getAudience() {
@@ -79,9 +79,9 @@ public class Lesson {
         int result = 1;
         result = prime * result
                 + ((discipline == null) ? 0 : discipline.hashCode());
-        result = prime * result + ((end == null) ? 0 : end.hashCode());
+        result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
         result = prime * result + ((groups == null) ? 0 : groups.hashCode());
-        result = prime * result + ((start == null) ? 0 : start.hashCode());
+        result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
         return result;
     }
 
@@ -104,11 +104,11 @@ public class Lesson {
         } else if (!discipline.equals(other.discipline)) {
             return false;
         }
-        if (end == null) {
-            if (other.end != null) {
+        if (dateEnd == null) {
+            if (other.dateEnd != null) {
                 return false;
             }
-        } else if (!end.equals(other.end)) {
+        } else if (dateEnd.equals(other.dateEnd)) {
             return false;
         }
         if (groups == null) {
@@ -118,11 +118,11 @@ public class Lesson {
         } else if (!groups.equals(other.groups)) {
             return false;
         }
-        if (start == null) {
-            if (other.start != null) {
+        if (dateStart == null) {
+            if (other.dateStart != null) {
                 return false;
             }
-        } else if (!start.equals(other.start)) {
+        } else if (!dateStart.equals(other.dateStart)) {
             return false;
         }
         return true;

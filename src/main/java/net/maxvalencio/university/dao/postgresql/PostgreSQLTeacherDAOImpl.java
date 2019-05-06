@@ -30,8 +30,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
 
         try {
             connection = daoFactory.getConnection();
-            insertTeachers = connection.prepareStatement(sqlTeachers,
-                    Statement.RETURN_GENERATED_KEYS);
+            insertTeachers = connection.prepareStatement(sqlTeachers, Statement.RETURN_GENERATED_KEYS);
             insertTeachers.setString(1, name);
             insertTeachers.setString(2, emailAddress);
             insertTeachers.setString(3, qualification);
@@ -39,18 +38,17 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
 
             resultSet = insertTeachers.getGeneratedKeys();
             resultSet.next();
-            long generatedId = resultSet.getLong("id");
+            long teacherId = resultSet.getLong("id");
 
-            insertTeachersDisciplines = connection
-                    .prepareStatement(sqlTeachersDisciplines);
+            insertTeachersDisciplines = connection.prepareStatement(sqlTeachersDisciplines);
             for (Discipline discipline : disciplines) {
-                insertTeachersDisciplines.setLong(1, generatedId);
+                insertTeachersDisciplines.setLong(1, teacherId);
                 insertTeachersDisciplines.setLong(2, discipline.getId());
                 insertTeachersDisciplines.addBatch();
             }
             insertTeachersDisciplines.executeBatch();
 
-            teacher = getById(generatedId);
+            teacher = getById(teacherId);
             return teacher;
         } catch (SQLException e) {
             System.err.println("Error in create() method of PostgrSQLTeacherDAOImpl class");
@@ -101,24 +99,24 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
                 teacher.setName(rsTeachers.getString("name"));
                 teacher.setEmailAddress(rsTeachers.getString("emailAddress"));
                 teacher.setQualification(rsTeachers.getString("qualification"));
+            
+                selectTeachersDisciplines = connection.prepareStatement(sqlTeachersDisciplines);
+                selectTeachersDisciplines.setLong(1, id);
+
+                rsTeachersDisciplines = selectTeachersDisciplines.executeQuery();
+
+                List<Discipline> teacherDisciplines = new ArrayList<>();
+                PostgreSQLDisciplineDAOImpl daoDiscipline = new PostgreSQLDisciplineDAOImpl();
+
+                while (rsTeachersDisciplines.next()) {
+                    long disciplineId = rsTeachersDisciplines.getLong("discipline_id");
+                    Discipline discipline = daoDiscipline.getById(disciplineId);
+                    teacherDisciplines.add(discipline);
+                }
+                
+                teacher.setDisciplines(teacherDisciplines);
+                return teacher;
             }
-
-            selectTeachersDisciplines = connection
-                    .prepareStatement(sqlTeachersDisciplines);
-            selectTeachersDisciplines.setLong(1, id);
-
-            rsTeachersDisciplines = selectTeachersDisciplines.executeQuery();
-
-            List<Discipline> teacherDisciplines = new ArrayList<>();
-            PostgreSQLDisciplineDAOImpl daoDiscipline = new PostgreSQLDisciplineDAOImpl();
-
-            while (rsTeachersDisciplines.next()) {
-                long disciplineId = rsTeachersDisciplines.getLong("discipline_id");
-                Discipline discipline = daoDiscipline.getById(disciplineId);
-                teacherDisciplines.add(discipline);
-            }
-            teacher.setDisciplines(teacherDisciplines);
-            return teacher;
         } catch (SQLException e) {
             System.err.println("Error in getById() method of PostgrSQLTeacherDAOImpl class");
         } finally {
@@ -161,12 +159,11 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
             updateTeachers = connection.prepareStatement(sqlTeachers);
             updateTeachers.setString(1, name);
             updateTeachers.setString(2, emailAddress);
-            updateTeachers.setString(3, "qualification");
+            updateTeachers.setString(3, qualification);
             updateTeachers.setLong(4, id);
             updateTeachers.executeQuery();
 
-            updateTeachersDisciplines = connection
-                    .prepareStatement(sqlTeachersDisciplines);
+            updateTeachersDisciplines = connection.prepareStatement(sqlTeachersDisciplines);
             for (Discipline discipline : disciplines) {
                 updateTeachersDisciplines.setLong(1, discipline.getId());
                 updateTeachersDisciplines.setLong(2, id);
@@ -195,74 +192,6 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
             }
         }
         return null;
-    }
-
-    @Override
-    public boolean addTeacherDiscipline(long teacher_id, long discipline_id) {
-        String sql = "INSERT INTO teachers_disciplines(teacher_id, discipline_id) VALUES ( ?, ?);";
-
-        Connection connection = null;
-        PreparedStatement statement = null;
-        try {
-            connection = daoFactory.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setLong(1, teacher_id);
-            statement.setLong(2, discipline_id);
-
-            int i = statement.executeUpdate();
-            if (i == 1) {
-                return true;
-            }
-        } catch (SQLException e) {
-            System.err.println("Error in addTeacherDiscipline() method of PostgrSQLTeacherDAOImpl class");
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Cannot execute close connection in addTeacherDiscipline() "
-                        + "method of PostgreSQLTeacherDAOImpl class");
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean deleteTeacherDiscipline(long teacher_id, long discipline_id) {
-        String sql = "DELETE FROM teachers_disciplines WHERE teacher_id = ? AND discipline_id = ?;";
-        
-        Connection connection = null;
-        PreparedStatement statement = null;
-        try {
-            connection = daoFactory.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setLong(1, teacher_id);
-            statement.setLong(2, discipline_id);
-            
-            int i = statement.executeUpdate();
-            if (i == 1) {
-                return true;
-            }
-        } catch (SQLException e) {
-            System.err.println("Error in deleteTeacherDiscipline() method of PostgrSQLTeacherDAOImpl class");
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Cannot execute close connection in deletedeleteTeacherDiscipline() "
-                        + "method of PostgreSQLTeacherDAOImpl class");
-            }
-        }
-        return false;
     }
 
     @Override
@@ -298,7 +227,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
 
     @Override
     public List<Teacher> getAll() {
-        String sqlSelectTeachers = "SELECT id FROM teachers;";
+        String sql = "SELECT id FROM teachers;";
 
         List<Teacher> teachers = null;
         Connection connection = null;
@@ -307,7 +236,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
         try {
             connection = daoFactory.getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(sqlSelectTeachers);
+            resultSet = statement.executeQuery(sql);
 
             teachers = new ArrayList<>();
 
@@ -318,7 +247,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
             }
             return teachers;
         } catch (SQLException e) {
-            System.err.println("Error in getAll() method of PostgrSQLStudentDAOImpl class");
+            System.err.println("Error in getAll() method of PostgrSQLTeacherDAOImpl class");
         } finally {
             try {
                 if (resultSet != null) {
@@ -332,7 +261,7 @@ public class PostgreSQLTeacherDAOImpl implements TeacherDAO {
                 }
             } catch (SQLException e) {
                 System.err.println("Cannot execute close connection in getAll() "
-                        + "method of PostgreSQLStudentDAOImpl class");
+                        + "method of PostgreSQLTeacherDAOImpl class");
             }
         }
         return null;

@@ -45,8 +45,6 @@ public class Teacher {
         return emailAddress;
     }
 
-    
-
     public String getQualification() {
         return qualification;
     }

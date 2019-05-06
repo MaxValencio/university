@@ -9,11 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.maxvalencio.university.dao.interfaces.GroupDAO;
-import net.maxvalencio.university.domain.Discipline;
 import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Student;
-import net.maxvalencio.university.domain.Teacher;
-
 
 public class PostgreSQLGroupDAOImpl implements GroupDAO {
 
@@ -53,7 +50,7 @@ public class PostgreSQLGroupDAOImpl implements GroupDAO {
             group = getById(generatedId);
             return group;
         } catch (SQLException e) {
-            System.err.println("Error");
+            System.err.println("Error in create() method of PostgrSQLGroupDAOImpl class");
         } finally {
             try {
                 if (resultSet != null) {
@@ -70,7 +67,7 @@ public class PostgreSQLGroupDAOImpl implements GroupDAO {
                 }
             } catch (SQLException e) {
                 System.err.println("Cannot execute close connection in create() "
-                        + "method of PostgreSQLTeacherDAOImpl class");
+                        + "method of PostgreSQLGroupDAOImpl class");
             }
         }
         return null;
@@ -100,23 +97,24 @@ public class PostgreSQLGroupDAOImpl implements GroupDAO {
                 group.setId(rsGroups.getLong("id"));
                 group.setName(rsGroups.getString("name"));
                 group.setAdmissionYear(rsGroups.getInt("year"));
+
+                selectGroupsStudents = connection.prepareStatement(sqlGroupsStudents);
+                selectGroupsStudents.setLong(1, id);
+
+                rsGroupsStudents = selectGroupsStudents.executeQuery();
+
+                List<Student> students = new ArrayList<>();
+                PostgreSQLStudentDAOImpl daoStudent = new PostgreSQLStudentDAOImpl();
+
+                while (rsGroupsStudents.next()) {
+                    long studentId = rsGroupsStudents.getLong("student_id");
+                    Student student = daoStudent.getById(studentId);
+                    students.add(student);
+                }
+                
+                group.setStudents(students);
+                return group;
             }
-
-            selectGroupsStudents = connection.prepareStatement(sqlGroupsStudents);
-            selectGroupsStudents.setLong(1, id);
-
-            rsGroupsStudents = selectGroupsStudents.executeQuery();
-
-            List<Student> students = new ArrayList<>();
-            PostgreSQLStudentDAOImpl daoStudent = new PostgreSQLStudentDAOImpl();
-
-            while (rsGroupsStudents.next()) {
-                long studentId = rsGroupsStudents.getLong("student_id");
-                Student student = daoStudent.getById(studentId);
-                students.add(student);
-            }
-            group.setStudents(students);
-            return group;
         } catch (SQLException e) {
             System.err.println("Error in getById() method of PostgrSQLGroupDAOImpl class");
         } finally {
@@ -172,7 +170,7 @@ public class PostgreSQLGroupDAOImpl implements GroupDAO {
             group = getById(id);
             return group;
         } catch (SQLException e) {
-            System.err.println("Error in update() method of PostgrSQLTeacherDAOImpl class");
+            System.err.println("Error in update() method of PostgrSQLGroupDAOImpl class");
         } finally {
             try {
                 if (updateGroups != null) {
@@ -186,39 +184,82 @@ public class PostgreSQLGroupDAOImpl implements GroupDAO {
                 }
             } catch (SQLException e) {
                 System.err.println("Cannot execute close connection in update() "
-                        + "method of PostgreSQLTeacherDAOImpl class");
+                        + "method of PostgreSQLGroupDAOImpl class");
             }
         }
         return null;
     }
 
     @Override
-    public boolean addStudentToGroup(long group_id, long student_id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean deleteStudentFromGroup(long group_id, long student_id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public boolean delete(long id) {
-        // TODO Auto-generated method stub
+        String sql = "DELETE FROM groups WHERE id = " + id + ";"; 
+        
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = daoFactory.getConnection();
+            statement = connection.createStatement();
+            int i = statement.executeUpdate(sql);
+            if (i == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error in delete() method of PostgrSQLGroupDAOImpl class");
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Cannot execute close connection in delete() "
+                        + "method of PostgreSQLGroupDAOImpl class");
+            }
+        }
         return false;
     }
 
     @Override
     public List<Group> getAll() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        String sql = "SELECT id FROM groups;";
 
-    @Override
-    public List<Student> getAllStudentGroup(long group_id) {
-        // TODO Auto-generated method stub
+        List<Group> groups = null;
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = daoFactory.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+            groups = new ArrayList<>();
+
+            while (resultSet.next()) {
+                long groupId = resultSet.getLong("id");
+                Group group = getById(groupId);
+                groups.add(group);
+            }
+            return groups;
+        } catch (SQLException e) {
+            System.err.println("Error in getAll() method of PostgrSQLGroupDAOImpl class");
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Cannot execute close connection in getAll() "
+                        + "method of PostgreSQLGroupDAOImpl class");
+            }
+        }
         return null;
     }
 }
