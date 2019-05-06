@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS 
     faculties, students, groups, teachers, audiences, disciplines, lessons, 
-	teachers_disciplines, faculties_teachers, faculties_groups, groups_students
+    teachers_disciplines, faculties_teachers, faculties_groups, groups_students
     CASCADE;
 	
 DROP SEQUENCE IF EXISTS 
