@@ -1,4 +1,4 @@
-package net.maxvalencio.university.dao.postgresql;
+package net.maxvalencio.university.dao;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
