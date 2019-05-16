@@ -5,7 +5,7 @@ import java.util.List;
 import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Student;
 
-public interface GroupDAO {
+public interface GroupDao {
 
     Group create(String name, int admissionYear,  List<Student> students);
     

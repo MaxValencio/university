@@ -5,7 +5,7 @@ import java.util.List;
 import net.maxvalencio.university.domain.Discipline;
 import net.maxvalencio.university.domain.Teacher;
 
-public interface TeacherDAO {
+public interface TeacherDao {
 
     Teacher create(String name, String emailAddress, String qualification, List<Discipline> disciplines);
     

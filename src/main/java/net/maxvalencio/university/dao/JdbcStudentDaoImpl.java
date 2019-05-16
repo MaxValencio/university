@@ -1,6 +1,6 @@
 package net.maxvalencio.university.dao;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,12 +10,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.StudentDAO;
+import net.maxvalencio.university.dao.interfaces.StudentDao;
 import net.maxvalencio.university.domain.Student;
 
-public class JdbcStudentDaoImpl implements StudentDAO {
+public class JdbcStudentDaoImpl implements StudentDao {
 
-    private DAOFactory daoFactory = new DAOFactory();
+    private DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Student create(String name, String emailAddress, int course) {

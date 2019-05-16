@@ -8,7 +8,7 @@ import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Lesson;
 import net.maxvalencio.university.domain.Teacher;
 
-public interface LessonDAO {
+public interface LessonDao {
 
     Lesson create(Discipline discipline, String dateStart, String dateEnd,
             Audience audience, Teacher teacher, List<Group> groups);

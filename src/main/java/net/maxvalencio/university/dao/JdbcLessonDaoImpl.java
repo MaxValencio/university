@@ -8,18 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.LessonDAO;
+import net.maxvalencio.university.dao.interfaces.LessonDao;
 import net.maxvalencio.university.domain.Audience;
 import net.maxvalencio.university.domain.Discipline;
 import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Lesson;
 import net.maxvalencio.university.domain.Teacher;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
-public class JdbcLessonDaoImpl implements LessonDAO {
+public class JdbcLessonDaoImpl implements LessonDao {
 
-    private DAOFactory daoFactory = new DAOFactory();
+    private DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Lesson create(Discipline discipline, String dateStart,

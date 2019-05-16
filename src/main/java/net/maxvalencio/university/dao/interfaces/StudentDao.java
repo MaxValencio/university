@@ -3,7 +3,7 @@ package net.maxvalencio.university.dao.interfaces;
 import java.util.List;
 import net.maxvalencio.university.domain.Student;
 
-public interface StudentDAO {
+public interface StudentDao {
     
     Student create(String name, String emailAddress, int course);
     

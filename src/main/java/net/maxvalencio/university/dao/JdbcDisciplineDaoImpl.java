@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.DisciplineDAO;
+import net.maxvalencio.university.dao.interfaces.DisciplineDao;
 import net.maxvalencio.university.domain.Discipline;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
-public class JdbcDisciplineDaoImpl implements DisciplineDAO {
+public class JdbcDisciplineDaoImpl implements DisciplineDao {
 
-    private DAOFactory daoFactory = new DAOFactory();
+    private DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Discipline create(String name) {

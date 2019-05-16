@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DAOUtils {
+public class DaoUtils {
     
     public static void closeResultSet(ResultSet resultSet) {
         if (resultSet != null) {

@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import org.postgresql.Driver;
 
-public class DAOFactory {
+public class DaoFactory {
     
     public Connection getConnection() {
         Properties properties = new Properties();

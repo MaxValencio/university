@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.AudienceDAO;
+import net.maxvalencio.university.dao.interfaces.AudienceDao;
 import net.maxvalencio.university.domain.Audience;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
-public class JdbcAudienceDaoImpl implements AudienceDAO {
+public class JdbcAudienceDaoImpl implements AudienceDao {
 
-    DAOFactory daoFactory = new DAOFactory();
+    DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Audience create(int number) {

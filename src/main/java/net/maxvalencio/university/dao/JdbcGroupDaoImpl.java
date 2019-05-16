@@ -8,15 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.GroupDAO;
+import net.maxvalencio.university.dao.interfaces.GroupDao;
 import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Student;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
-public class JdbcGroupDaoImpl implements GroupDAO {
+public class JdbcGroupDaoImpl implements GroupDao {
 
-    DAOFactory daoFactory = new DAOFactory();
+    DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Group create(String name, int year, List<Student> students) {

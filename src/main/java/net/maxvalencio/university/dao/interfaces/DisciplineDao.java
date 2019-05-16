@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.maxvalencio.university.domain.Discipline;
 
-public interface DisciplineDAO {
+public interface DisciplineDao {
     
     Discipline create(String name);
     

@@ -8,15 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.maxvalencio.university.dao.interfaces.TeacherDAO;
+import net.maxvalencio.university.dao.interfaces.TeacherDao;
 import net.maxvalencio.university.domain.Discipline;
 import net.maxvalencio.university.domain.Teacher;
 
-import static net.maxvalencio.university.dao.DAOUtils.*;
+import static net.maxvalencio.university.dao.DaoUtils.*;
 
-public class JdbcTeacherDaoImpl implements TeacherDAO {
+public class JdbcTeacherDaoImpl implements TeacherDao {
 
-    DAOFactory daoFactory = new DAOFactory();
+    DaoFactory daoFactory = new DaoFactory();
 
     @Override
     public Teacher create(String name, String emailAddress,

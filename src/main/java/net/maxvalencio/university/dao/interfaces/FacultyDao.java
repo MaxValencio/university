@@ -6,7 +6,7 @@ import net.maxvalencio.university.domain.Faculty;
 import net.maxvalencio.university.domain.Group;
 import net.maxvalencio.university.domain.Teacher;
 
-public interface FacultyDAO {
+public interface FacultyDao {
     
     Faculty create(String name, List<Teacher> teachers, List<Group> groups);
     

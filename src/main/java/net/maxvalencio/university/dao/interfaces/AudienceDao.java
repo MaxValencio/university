@@ -3,7 +3,7 @@ package net.maxvalencio.university.dao.interfaces;
 import java.util.List;
 import net.maxvalencio.university.domain.Audience;
 
-public interface AudienceDAO {
+public interface AudienceDao {
     
     Audience create(int number);
     
