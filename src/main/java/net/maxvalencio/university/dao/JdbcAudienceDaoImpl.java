@@ -21,23 +21,21 @@ public class JdbcAudienceDaoImpl implements AudienceDao {
     public Audience create(int number) {
         final String SQL_INSERT = "INSERT INTO audience(number) VALUES(?);";
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = daoFactory.getConnection();
-            statement = connection.prepareStatement(SQL_INSERT,
-                    Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = daoFactory.getConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
+
             statement.setInt(1, number);
             statement.executeUpdate();
-            resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            return getAudienceDB(resultSet);
+
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                resultSet.next();
+                return getAudienceDB(resultSet);
+            }
+
         } catch (SQLException e) {
             System.err.println(
                     "Error in create() method of JdbcAudienceDaoImpl class");
-        } finally {
-            close(resultSet, statement, connection);
         }
         return null;
     }
